@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const NoteForm = () => {
+const NoteForm = ({notes, NoteList}) => {
     
     const [formData, setFormData] = useState({
         title: '',
@@ -59,6 +59,20 @@ const NoteForm = () => {
                         value={form.Data.title}
                         onChange={handleChange}
                         />
+                    </div> 
+                    <div className="mb-4">
+                        <label htmlFor="" className="block-font-semibold">Title</label>
+                        <select
+                        name="priority"
+                        type="text"
+                        className="w-full p-2 border rounded-lg"
+                        value={form.Data.priority}
+                        onChange={handleChange}
+                        >
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                        
                     </div>
                     <button className="w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover: bg-purple-600">
                         📑 Add Note
