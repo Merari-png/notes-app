@@ -44,8 +44,27 @@ const NoteForm = () => {
                 cursor-pointer hover: bg-purple-200 hover: border-purple-300 trasintion mb-4"
                 onClick = {()=>setIsFormVsible(isFormVisible)}
                 >
-                    {isFormVisible ? 'Hide Form X' : ''}
+                    {isFormVisible ? 'Hide Form X' : 'AddNew Note +'}
             </button>
+
+            {isFormVsible && (
+                <form onSubmit={handleSubmit}
+                className="mb-4">
+                    <div className="mb-4">
+                        <label htmlFor="" className="block-font-semibold">Title</label>
+                        <input
+                        name="title"
+                        type="text"
+                        className="w-full p-2 border rounded-lg"
+                        value={form.Data.title}
+                        onChange={handleChange}
+                        />
+                    </div>
+                    <button className="w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover: bg-purple-600">
+                        📑 Add Note
+                    </button>
+                </form>
+            )}
         </>
     )
 }
