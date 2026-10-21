@@ -1,6 +1,7 @@
 import { useState } from "react"
 
-const NoteForm = ({notes, NoteList}) => {
+//const NoteForm = () => {
+const NoteForm = ({notes, setNotes}) => {
     
     const [formData, setFormData] = useState({
         title: '',
@@ -9,12 +10,12 @@ const NoteForm = ({notes, NoteList}) => {
         desription: ''
     })
 
-    const [isFormVisible, setIsFormVsible] = useState(false)
+    const [isFormVisible, setIsFormVisible] = useState(false)
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.taret.name]: e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
@@ -23,10 +24,10 @@ const NoteForm = ({notes, NoteList}) => {
         //Validacion
         if(!formData.title || !formData.description) return
         //Crear le objeto de la nota
-        const NewNote = {id: Date.now(), ...formData}
+        const newNote = {id: Date.now(), ...formData}
 
         //Agregar notas al estado (state)
-        setNotes({newNote, ...notes})
+        setNotes([newNote, ...notes])
 
         //Reset de campos de formData
         setFormData({
@@ -41,46 +42,71 @@ const NoteForm = ({notes, NoteList}) => {
         <>
             <button
                 className="w-full bg-gray-100 border border-gray-300 text-purple-800 py-2 rounded-1g
-                cursor-pointer hover: bg-purple-200 hover: border-purple-300 trasintion mb-4"
-                onClick = {()=>setIsFormVsible(isFormVisible)}
+                cursor-pointer hover:bg-purple-200 hover: border-purple-300 trasintion mb-4"
+                onClick = {()=>setIsFormVsible(!isFormVisible)}
                 >
                     {isFormVisible ? 'Hide Form X' : 'AddNew Note +'}
             </button>
 
-            {isFormVsible && (
-                <form onSubmit={handleSubmit}
-                className="mb-4">
+            {isFormVisible && (
+                <form onSubmit={handleSubmit} className="mb-6">
                     <div className="mb-4">
                         <label htmlFor="" className="block-font-semibold">Title</label>
                         <input
                         name="title"
                         type="text"
                         className="w-full p-2 border rounded-lg"
-                        value={form.Data.title}
+                        value={formData.title}
                         onChange={handleChange}
                         />
                     </div> 
                     <div className="mb-4">
-                        <label htmlFor="" className="block-font-semibold">Title</label>
+                        <label htmlFor="" className="block-font-semibold">Priority</label>
                         <select
                         name="priority"
-                        type="text"
+                        title="title"
                         className="w-full p-2 border rounded-lg"
-                        value={form.Data.priority}
+                        value={formData.priority}
                         onChange={handleChange}
-                        >
+                    >
                         <option value="High">High</option>
                         <option value="Medium">Medium</option>
                         <option value="Low">Low</option>
-                        
+                        </select>
                     </div>
-                    <button className="w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover: bg-purple-600">
+                    <div className="mb-4">
+                        <label htmlFor="" className="block-font-semibold">Category</label>
+                        <select
+                        name="category"
+                        title="category"
+                        type="text"
+                        className="w-full p-2 border rounded-lg"
+                        value={formData.category}
+                        onChange={handleChange}
+                    >
+                        <option value="Work">Work</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Ideas">Ideas</option>
+                        </select>
+                        </div>
+                        <div className="mb-4">
+                        <label htmlFor="" className="block-font-semibold">Description</label>
+                        <textarea
+                        name="description"
+                        type="description"
+                        className="w-full p-2 border rounded-lg"
+                        value={formData.description}
+                        onChange={handleChange}
+                        ></textarea>
+                    </div>
+                    <button className="w-full bg-purple-500 text-white py-2 rounded-lg cursor-pointer hover:bg-purple-600">
                         📑 Add Note
                     </button>
                 </form>
             )}
         </>
     )
-}
+  }
+//}
 
 export default NoteForm;
