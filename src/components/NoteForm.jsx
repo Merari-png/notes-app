@@ -5,9 +5,9 @@ const NoteForm = ({notes, setNotes}) => {
     
     const [formData, setFormData] = useState({
         title: '',
-        category: 'work',
+        category: 'Work',
         priority: 'Medium',
-        desription: ''
+        description: ''
     })
 
     const [isFormVisible, setIsFormVisible] = useState(false)
@@ -42,7 +42,7 @@ const NoteForm = ({notes, setNotes}) => {
         <>
             <button
                 className="w-full bg-gray-100 border border-gray-300 text-purple-800 py-2 rounded-lg
-                cursor-pointer hover: bg-purple-200 hover: border-purple-300 trasintion mb-4"
+                cursor-pointer hover:bg-purple-200 hover:border-purple-300 transition mb-4"
                 onClick = {()=>setIsFormVisible(!isFormVisible)}
                 >
                     {isFormVisible ? 'Hide Form X' : 'AddNew Note +'}
@@ -51,7 +51,7 @@ const NoteForm = ({notes, setNotes}) => {
             {isFormVisible && (
                 <form onSubmit={handleSubmit} className="mb-6">
                     <div className="mb-4">
-                        <label htmlFor="" className="block-font-semibold">Title</label>
+                        <label htmlFor="" className="block font-semibold">Title</label>
                         <input
                         name="title"
                         type="text"
@@ -61,7 +61,7 @@ const NoteForm = ({notes, setNotes}) => {
                         />
                     </div> 
                     <div className="mb-4">
-                        <label htmlFor="" className="block-font-semibold">Priority</label>
+                        <label htmlFor="" className="block font-semibold">Priority</label>
                         <select
                         name="priority"
                         title="title"
@@ -75,7 +75,7 @@ const NoteForm = ({notes, setNotes}) => {
                         </select>
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="" className="block-font-semibold">Category</label>
+                        <label htmlFor="" className="block font-semibold">Category</label>
                         <select
                         name="category"
                         title="category"
@@ -90,10 +90,10 @@ const NoteForm = ({notes, setNotes}) => {
                         </select>
                         </div>
                         <div className="mb-4">
-                        <label htmlFor="" className="block-font-semibold">Description</label>
+                        <label htmlFor="" className="block font-semibold">Description</label>
                         <textarea
                         name="description"
-                        type="description"
+                        type="text"
                         className="w-full p-2 border rounded-lg"
                         value={formData.description}
                         onChange={handleChange}
