@@ -1,5 +1,5 @@
 @import 'tailwindcss';
 
 body{
-  @aply bg-purple-900;
+  @apply bg-purple-900;
 }
